@@ -1,0 +1,160 @@
+body {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+ul{
+  padding: 0;
+  margin: 0;
+}
+.logo-lbn{
+  display: flex;
+  align-items: center;
+}
+.logo-lbn img{ 
+  width: 50px;
+}
+.profile-pic{
+  width: 43px;
+  border: 2px solid rgba(0, 0, 0, 0.313);
+  border-radius: 30px;
+}
+.search-bar{
+  display: flex;
+  align-items: center;
+}
+#campoDeBusca{
+  width: 500px;
+  height: 33px;
+  border-radius: 0px;
+  border-color: rgba(0, 0, 0, 0.156);
+  font-size: 17px;
+  padding-left: 15px;
+}
+.search-icon{
+  height: 39px;
+  font-size: 20px;
+  padding: 0 20px;
+  border: 2px solid rgba(0, 0, 0, 0.156);
+  border-left: none;
+  background-color:rgba(172, 165, 165, 0.128);
+}
+header {
+  background-color: rgb(255, 255, 255);
+  box-shadow: 10px 0px 10px rgba(0, 0, 0, 0.133);
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  padding: 0 50px;
+  height: 10%;
+}
+.tela-inteira {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  min-height: 80%;
+  display: flex;
+}
+
+.menu-vertical {
+ text-align: left;
+ margin: 30px;
+}
+.menu-vertical li {
+  width: 150px;
+  padding-top:10px;
+  padding-bottom:10px;
+  padding-left: 20px;
+} 
+.menu-vertical li:hover {
+  background-color: rgba(222, 217, 217, 0.271);
+  cursor: pointer;
+}
+.active{
+  background-color: rgba(222, 217, 217, 0.602);
+}
+.botoes-meunu-vertical {
+  list-style-type: none;
+}
+
+.painel-de-videos {
+  padding-left: 20px;
+  padding-top: 20px;
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 24.8% 0.2%);
+  grid-template-rows: repeat(4, 270px 20px);
+}
+
+.media1 {
+  grid-column-start: 1;
+  grid-row-start: 1;
+}
+
+.media2 {
+  grid-column-start: 3;
+  grid-row-start: 1;
+}
+
+.media3 {
+  grid-column-start: 5;
+  grid-row-start: 1;
+}
+
+.media4 {
+  grid-column-start: 7;
+  grid-row-start: 1;
+}
+
+.media5 {
+  grid-column-start: 1;
+  grid-row-start: 3;
+}
+
+.media6 {
+  grid-column-start: 3;
+  grid-row-start: 3;
+}
+
+.media7 {
+  grid-column-start: 5;
+  grid-row-start: 3;
+}
+
+.media8 {
+  grid-column-start: 7;
+  grid-row-start: 3;
+}
+
+
+.box-pagina-principal {
+  display: grid;
+  grid-template-rows: 3fr 1fr;
+  grid-template-columns: 1fr;
+  align-items: start;
+  justify-items: stretch;
+}
+
+
+footer {
+  height: 10%;
+  background-color: rgba(128, 128, 128, 0.082);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.box-pagina-principal > img {
+  width: 95%;
+  height: 200px;
+}
+
+footer h4 {
+  margin-left: 45%;
+  color: rgba(0, 0, 0, 0.364);
+}
+
+
