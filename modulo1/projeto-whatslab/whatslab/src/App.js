@@ -43,6 +43,9 @@ font-weight:bolder;
 margin:20px 10px 20px 10px;
 `
 const DivListaDeMensagem = styled.div`
+// display:flex;
+// flex-direction:column;
+// align-items:center;
 `
 function App() {
 
