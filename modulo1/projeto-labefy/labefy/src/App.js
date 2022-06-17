@@ -1,23 +1,60 @@
-import logo from './logo.svg';
+
 import './App.css';
+import axios from 'axios'
+import React, { useState } from 'react';
+
 
 function App() {
+
+
+  function getAll(){
+    axios.get('https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists',{
+      headers: {
+        Authorization: 'angelo-alves-franklin'
+      }
+    }).then((response) => {
+      console.log(response)
+      // setPlaylists(response.data.result.list)
+    }).catch((error) => {
+      console.log(error)
+    })
+    
+  }
+
+  function createPlaylist(){
+    let body = {
+      "name": input
+    }
+    axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists',body, {
+      headers: {
+        Authorization: 'angelo-alves-franklin'
+      }
+    }).then((response) => {
+      console.log(response.data)
+    }).catch((error) => {
+      console.log(error)
+    })
+    getAll();
+  }
+  
+
+  function addPlaylist(){
+    console.log(input)
+  }
+  getAll()
+  const [playlists, setPlaylists] = useState([])
+  const [input, setInput] = useState('')
+  const handleInput = (event) =>{
+    setInput(event.target.value)
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>labefy</h1>
+      <div> 
+        <input value={input} onChange={handleInput} />
+        <button onClick={createPlaylist}>criar playlist</button> 
+      </div>
+      {playlists}
     </div>
   );
 }
