@@ -21,10 +21,10 @@ export const LoginPage = () => {
             password: inputSenha
         }
 
-        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/darvas/login', body).then((response) => {
+        axios.post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/angelo-alves-franklin/login', body).then((response) => {
             console.log('logou', response.data.token)
             localStorage.setItem('token', response.data.token)
-            navigate('/home')
+            navigate('/admin')
         }).catch((error) => {
             console.log(error.response)
         })
@@ -33,9 +33,11 @@ export const LoginPage = () => {
     return (
         <div>
             <h1>LoginPage</h1>
+            
             <input value={inputEmail} placeholder='email' type='email' onChange={handleEmail}/>
             <input value={inputSenha} placeholder='senha' type='email' onChange={handleSenha}/>
             <button onClick={makeLogin} >Login</button>
+            <button onClick={() =>{navigate('/')}}>voltar</button>
         </div>
 
     )

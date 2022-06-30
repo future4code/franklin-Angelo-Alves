@@ -3,20 +3,19 @@ import { useNavigate } from "react-router-dom"
 export const HomePage = () => {
     const navigate = useNavigate()
 
-    useEffect(() => {
-        const token = localStorage.getItem('token')
-        if (token === null) {
-            navigate('/')
-        }
-    }, [])
 
-    const goToTrip = () =>{
-        navigate('/admin/trips/00yD1s00AxDbnWKiZjL7')
+    const goToViagens = (id) =>{
+        navigate('/viagens')
     }
+    const goToAdmin = (id) =>{
+        navigate('/admin')
+    }
+
     return (
         <div>
             <h1>home</h1>
-            <button onClick={goToTrip} >Ver detalhes da Viagem Ano Novo em Mercurio</button>
+            <button onClick={goToViagens} >Ver viagens</button>
+            <button onClick={goToAdmin}>area restrita</button>
         </div>
 
     )
