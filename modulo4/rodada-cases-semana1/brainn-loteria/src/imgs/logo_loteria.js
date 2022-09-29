@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 const StyledLogo = styled.div`
-position: fixed;
-top: 160px;
+@media (min-width: 912px) {
+    z-index: 10;
+  }
 `
 export const Logo = () => {
     return (

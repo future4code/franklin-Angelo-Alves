@@ -5,6 +5,8 @@ import styled from 'styled-components'
 import { colors } from "./constants/colors";
 import { Header } from "./imgs/Header";
 import { Logo } from "./imgs/logo_loteria";
+import { HeaderDesk } from "./imgs/HeaderDesk";
+import { date } from "./utils/date";
 
 const baseURL = "https://brainn-api-loterias.herokuapp.com/api/v1/";
 
@@ -15,17 +17,39 @@ align-items:center;
 background-color: #EFEFEF;
 height: 100vh;
 width: 100vw;
+overflow-x: hidden;
+@media (min-width: 912px) {
+  flex-direction: row;
+  overflow:hidden;
+  }
 `
 const HeaderDiv = styled.div`
 display:flex;
 flex-direction:column;
 align-items:center;
-height: 370px;
+height: 420px;
 `
 const NumerosDiv = styled.section`
 display:flex;
-flex-direction:column;
 align-items:center;
+justify-content: center;
+flex-wrap: wrap;
+margin:0  40px;
+@media (min-width: 912px) {
+  margin-right: 100px;
+}
+`
+const LogoDiv = styled.div`
+position:absolute;
+top: 160px;
+display: flex;
+flex-direction: column;
+align-items: center;
+@media (min-width: 912px) {
+  flex-direction: row;
+  top: 47%;
+  left: 5%;
+}
 `
 const Select = styled.select`
 font-size: 15px;
@@ -39,25 +63,73 @@ padding-right:22px;
 font-family: 'Montserrat', sans-serif;
 font-weight: 500;
 border-radius: 12px;
+@media (min-width: 912px) {
+    position: absolute;
+    top: 90px;
+    left: 90px;
+    width: 200px;
+    height: 45px;
+    z-index: 10;
+  }
 `
 const NomeLoteria = styled.h2`
 font-family: 'Montserrat', sans-serif;
 font-weight: 700;
 color: white;
-position: absolute;
-top: 220px;
+font-size: 30px;
+@media (min-width: 912px) {
+    z-index: 10;
+    margin: 25px;
+  }
 `
-const NumeroConcurso = styled.h4`
+const NumeroConcurso = styled.p`
 font-family: 'Montserrat', sans-serif;
 font-size: 14px;
 font-weight: 500;
 color: white;
 position: absolute;
 top: 300px;
+z-index: 1000;
+@media (min-width: 912px) {
+  display: none;
+  }
 `
-const Balao = styled.h1`
+const NumeroConcursoDesk = styled.div`
+  position: absolute;
+  top: 80%;
+  left: 5%;
+  color:white;
+  padding: 0;
+  @media (max-width: 912px){
+    display: none;
+  }
+`
+const H6ConcursoDesk = styled.h6`
+font-family: 'Montserrat', sans-serif;
+font-weight: 500;
+font-size: 14px;
+margin: 0;
+
+`
+const H5ConcursoDesk = styled.h5`
+font-family: 'Montserrat', sans-serif;
+font-weight: 700;
 font-size: 20px;
-color: red;
+margin-top: 15px;
+`
+const Bolinha = styled.div`
+background-color: white;
+width: 50px;
+height: 50px;
+border-radius: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin:10px;
+@media (min-width: 912px) {
+  width: 75px;
+  height: 75px;
+}
 `
 
 function App() {
@@ -65,6 +137,7 @@ function App() {
   const [input, setInput] = useState(['MEGA-SENA'])
   const [concurso, setConcurso] = useState('')
   const [numeros, setNumeros] = useState([])
+  const [data, setData] = useState('')
 
   React.useEffect(() => {
     axios.get(`${baseURL}/loterias`).then((response) => {
@@ -81,9 +154,13 @@ function App() {
   React.useEffect(() => {
     axios.get(`${baseURL}/concursos/${concurso.concursoId}`).then((response) => {
       setNumeros(response.data.numeros);
-      console.log(numeros);
+      setData(date(response.data.data))
+      console.log(data)
     });
   }, [concurso, input]);
+
+
+
 
   return (
     <MainDiv>
@@ -92,14 +169,21 @@ function App() {
         <Select value={input} onChange={(e) => setInput(e.target.value)}>
           {loteria ? loteria.map((loteria) => <option value={loteria.nome.toUpperCase()}>{loteria.nome.toUpperCase()}</option>) : <option>carregando</option>}
         </Select>
-        <Logo />
-        <NomeLoteria>{input}</NomeLoteria>
+        <LogoDiv>
+          <Logo />
+          <NomeLoteria>{input}</NomeLoteria>
+        </LogoDiv>
+
         <NumeroConcurso>{`CONCURSO Nº ${concurso.concursoId}`}</NumeroConcurso>
+        <NumeroConcursoDesk>
+          <H6ConcursoDesk>CONCURSO</H6ConcursoDesk>
+          <H5ConcursoDesk>{concurso.concursoId} - {data} </H5ConcursoDesk>
+        </NumeroConcursoDesk>
       </HeaderDiv>
+      <HeaderDesk color={colors[input].cor} />
       <NumerosDiv>
-        <h1>numeros</h1>
         {numeros.map((numero) => {
-          return <p>{numero}</p>
+          return <Bolinha>{numero}</Bolinha>
         })}
       </NumerosDiv>
     </MainDiv>

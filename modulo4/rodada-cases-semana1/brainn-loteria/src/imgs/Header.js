@@ -1,7 +1,13 @@
 import styled from 'styled-components'
 const StyledHeader = styled.div`
-position: fixed;
-top: -80px;
+position: relative;
+top: -50px;
+
+@media (min-width: 912px) {
+   display:none;
+   z-index: 0;
+  }
+
 `
 
 export const Header = (props) => {
