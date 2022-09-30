@@ -1,11 +1,9 @@
 import styled from 'styled-components'
 const StyledHeader = styled.div`
 position: relative;
-top: -50px;
-
+top: -90px;
 @media (min-width: 912px) {
    display:none;
-   z-index: 0;
   }
 
 `

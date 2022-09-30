@@ -7,7 +7,7 @@ import { Header } from "./imgs/Header";
 import { Logo } from "./imgs/logo_loteria";
 import { HeaderDesk } from "./imgs/HeaderDesk";
 import { date } from "./utils/date";
-
+import arrow from './imgs/arrow.png'
 const baseURL = "https://brainn-api-loterias.herokuapp.com/api/v1/";
 
 const MainDiv = styled.div`
@@ -40,14 +40,15 @@ margin:0  40px;
 }
 `
 const LogoDiv = styled.div`
-position:absolute;
-top: 160px;
 display: flex;
 flex-direction: column;
 align-items: center;
+z-index: 12000;
+position: absolute;
+top:140px;
 @media (min-width: 912px) {
   flex-direction: row;
-  top: 47%;
+  top: 45%;
   left: 5%;
 }
 `
@@ -63,6 +64,13 @@ padding-right:22px;
 font-family: 'Montserrat', sans-serif;
 font-weight: 500;
 border-radius: 12px;
+-webkit-appearance: none;
+-moz-appearance:    none;
+appearance:         none;
+background-image: url(${arrow});
+background-repeat: no-repeat;
+background-position: 0%;
+background-position-x: 90%;
 @media (min-width: 912px) {
     position: absolute;
     top: 90px;
@@ -88,8 +96,8 @@ font-size: 14px;
 font-weight: 500;
 color: white;
 position: absolute;
-top: 300px;
-z-index: 1000;
+top: 290px;
+z-index: 2000;
 @media (min-width: 912px) {
   display: none;
   }
@@ -127,8 +135,20 @@ align-items: center;
 justify-content: center;
 margin:10px;
 @media (min-width: 912px) {
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
+}
+`
+const TextoInformativo = styled.p`
+margin-top: 50px;
+font-family: 'Montserrat', sans-serif;
+font-weight: 400;
+font-size: 14px;
+text-align: center;
+@media (min-width: 912px) {
+  position: absolute;
+  bottom: 70px;
+  right: 200px;
 }
 `
 
@@ -185,6 +205,7 @@ function App() {
         {numeros.map((numero) => {
           return <Bolinha>{numero}</Bolinha>
         })}
+        <TextoInformativo>Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA.</TextoInformativo>
       </NumerosDiv>
     </MainDiv>
   );
