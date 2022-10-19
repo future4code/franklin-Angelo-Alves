@@ -1,21 +1,24 @@
 export class Product {
-    private id: number;
+
     public name: string;
     public tag: string;
     public url: string;
+    public color: string;
+    public image: string;
+
     constructor(
-        id: number,
+
         name: string,
         tag: string,
-        url: string
+        url: string,
+        color: string,
+        image: string,
+
     ) {
-        this.id = id
-        this.name = name
+        this.name = name;
         this.tag = tag
         this.url = url;
+        this.color = color;
+        this.image = image;
     }
-    public getTag = () => {
-        return this.tag
-    }
-
 }

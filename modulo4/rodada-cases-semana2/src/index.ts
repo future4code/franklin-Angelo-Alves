@@ -1,23 +1,17 @@
-import express from "express";
+import { postProduct } from './controller/postProduct';
+import { getProduct } from "./controller/getProduct"
+import express from "express"
+import cors from "cors"
+import { getProductByTag } from './controller/getProductByTag';
+import { getProductByColor } from './controller/getProductByColor';
+const app = express()
 
-import { AddressInfo } from "net";
-import { productRouter } from "./router/productRouter";
+app.use(cors())
+app.use(express.json())
 
-const app = express();
+app.listen(3003, () => console.log("Servidor disponível em 3003"))
 
-app.use(express.json());
-
-const server = app.listen(process.env.PORT || 3003, () => {
-    if (server) {
-        const address = server.address() as AddressInfo;
-        console.log(`Server is running in http://localhost:${address.port}`);
-    } else {
-        console.error(`Failure upon starting server.`);
-    }
-});
-
-app.get("/ping", (req, res) => {
-    res.send("Pong!")
-})
-
-app.use('/products', productRouter)
+app.get('/products', getProduct)
+app.get('/products/:tag', getProductByTag)
+app.get('/products/color/:color', getProductByColor)
+app.post('/product', postProduct)
